@@ -1,0 +1,14 @@
+﻿@model List<UnniBoot.Models.CartItem>
+<div class="cart">
+    <p>
+   <span>Giỏ hàng:</span><div id="dd" class="wrapper-dropdown-2">
+           @Model.Count sản phẩm
+            <ul class="dropdown">
+                @foreach (var item in Model)
+                {
+                    <li>@item.Product.Name</li>
+                }              
+            </ul>
+        </div>
+    </p>
+</div>

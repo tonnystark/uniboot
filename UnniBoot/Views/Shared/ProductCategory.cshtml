@@ -1,0 +1,24 @@
+﻿@model List<Model.EF.ProductCategory>
+@{ 
+    ViewBag.Title = "Danh mục sản phẩm"; 
+}
+
+
+<ul>
+    <h3>Danh mục sản phẩm </h3>
+    @foreach (var item in Model.Where(x => x.ParentID == null))
+    {
+        var childs = Model.Where(x => x.ParentID == item.ID);
+        var childClass = childs.Count() > 0 ? "class=dropdown-toggle data-toggle=dropdown" : "";
+
+        <li class="dropdown">
+            <a href="/san-pham/@item.MetaTitle-@item.ID" @childClass title="@item.Name">@item.Name</a>
+            <ul class="dropdown-menu">
+                @foreach (var childItem in childs)
+                {
+                    <li> <a href="/san-pham/@childItem.MetaTitle-@childItem.ID" title="@childItem.Name">@childItem.Name</a></li>
+                }
+            </ul>
+        </li>
+    }
+</ul>
